@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import styles from './Nav.module.css';
+import PropTypes from 'prop-types';
 
 const Nav = ({ cartCount = 0 }) => {
   return (
@@ -8,13 +9,19 @@ const Nav = ({ cartCount = 0 }) => {
         <li>
           <Link to="home">Home</Link>
         </li>
-        <li>Fake Store LOL</li>
+        <li>
+          <div className={styles.title}>Fake Store LOL</div>
+        </li>
         <li>
           <Link to="cart">Cart ({cartCount})</Link>
         </li>
       </ul>
     </nav>
   );
+};
+
+Nav.propTypes = {
+  cartCount: PropTypes.number,
 };
 
 export default Nav;

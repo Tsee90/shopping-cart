@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import styles from './Card.module.css';
+import PropTypes from 'prop-types';
 
 function Card({ id, onClick }) {
   const [title, setTitle] = useState('');
@@ -49,5 +50,10 @@ function Card({ id, onClick }) {
     </div>
   );
 }
+
+Card.propTypes = {
+  id: PropTypes.number,
+  onClick: PropTypes.func,
+};
 
 export default Card;
