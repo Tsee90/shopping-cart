@@ -6,6 +6,7 @@ function Card({ id, onClick }) {
   const [price, setPrice] = useState(0);
   const [imgSrc, setImgSrc] = useState('');
   const [description, setDescription] = useState('');
+  const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
     const url = `https://fakestoreapi.com/products/${id}`;
@@ -23,6 +24,10 @@ function Card({ id, onClick }) {
       });
   }, [id]);
 
+  const handleAdd = () => {
+    onClick(quantity);
+  };
+
   return (
     <div className={styles.cardContainer}>
       <div>{title}</div>
@@ -30,9 +35,15 @@ function Card({ id, onClick }) {
       <img src={imgSrc} alt="" />
       <div>{description}</div>
       <div>
-        <label>Quantity:</label>
-        <input type="number" />
-        <button onClick={onClick}>Add</button>
+        <label htmlFor="quantity">Quantity:</label>
+        <input
+          type="number"
+          id="quantity"
+          value={quantity}
+          onChange={(e) => setQuantity(Number(e.target.value))}
+          min="1"
+        />
+        <button onClick={handleAdd}>Add</button>
       </div>
     </div>
   );
