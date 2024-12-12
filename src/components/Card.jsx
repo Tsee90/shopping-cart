@@ -25,7 +25,8 @@ function Card({ id, onClick }) {
   }, [id]);
 
   const handleAdd = () => {
-    onClick(quantity);
+    const item = { title, price, imgSrc, description, quantity };
+    onClick(item);
   };
 
   return (
