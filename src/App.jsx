@@ -13,16 +13,25 @@ const App = () => {
 
   const addCart = (item) => {
     const { quantity } = item;
-    const newNum = cartCount + quantity;
-    setCartCount(newNum);
-    const newItems = [...items, item];
+    const newCount = cartCount + quantity;
+    setCartCount(newCount);
+    const newItem = { ...item, id: crypto.randomUUID() };
+    const newItems = [...items, newItem];
     setItems(newItems);
+  };
+
+  const removeItem = (id) => {
+    const item = items.find((item) => item.id === id);
+    const newCount = cartCount - item.quantity;
+    setCartCount(newCount);
+    const updatedItems = items.filter((item) => item.id !== id);
+    setItems(updatedItems);
   };
 
   return (
     <div>
       <Nav cartCount={cartCount} />
-      <Outlet context={{ addCart, items }}></Outlet>
+      <Outlet context={{ addCart, items, removeItem }}></Outlet>
     </div>
   );
 };

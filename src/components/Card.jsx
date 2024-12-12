@@ -31,11 +31,11 @@ function Card({ id, onClick }) {
 
   return (
     <div className={styles.cardContainer}>
-      <div>{title}</div>
-      <div>${price}</div>
+      <div className={styles.title}>{title}</div>
+      <div className={styles.price}>${price.toFixed(2)}</div>
       <img src={imgSrc} alt="" />
       <div>{description}</div>
-      <div>
+      <div className={styles.quantity}>
         <label htmlFor="quantity">Quantity:</label>
         <input
           type="number"

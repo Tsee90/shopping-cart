@@ -1,12 +1,16 @@
 import { useOutletContext } from 'react-router-dom';
 import Card from './Card.jsx';
-
+import styles from './Home.module.css';
 function Home() {
   const { addCart } = useOutletContext();
+  const itemIds = [1, 2, 3, 4, 5];
   return (
     <div>
-      <div>This is going to becometh the homepageth</div>
-      <Card id={2} onClick={addCart}></Card>
+      <div className={styles.container}>
+        {itemIds.map((id) => {
+          return <Card key={id} id={id} onClick={addCart}></Card>;
+        })}
+      </div>
     </div>
   );
 }

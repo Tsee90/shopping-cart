@@ -1,0 +1,42 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.item {
+  display: flex;
+  gap: 10px;
+  background-color: rgb(231, 160, 231, 0.5);
+  padding: 5px;
+}
+
+.buy {
+  box-sizing: border-box;
+  width: 100px;
+  height: 50px;
+  font-size: 1.5rem;
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 10px;
+}
+
+.buy:hover {
+  background-color: white;
+  color: green;
+  border: 2px solid green;
+}
+
+.total {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.cart {
+  display: flex;
+  justify-content: center;
+  font-size: 2rem;
+  color: purple;
+  font-weight: bold;
+}
