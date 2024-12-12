@@ -3,7 +3,7 @@ import Card from './Card.jsx';
 import styles from './Home.module.css';
 function Home() {
   const { addCart } = useOutletContext();
-  const itemIds = [1, 2, 3, 4, 5];
+  const itemIds = [1, 2, 3, 4, 5, 6];
   return (
     <div>
       <div className={styles.container}>

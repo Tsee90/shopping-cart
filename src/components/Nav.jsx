@@ -10,7 +10,7 @@ const Nav = ({ cartCount = 0 }) => {
           <Link to="home">Home</Link>
         </li>
         <li>
-          <div className={styles.title}>Fake Store LOL</div>
+          <div className={styles.title}>Fake Store</div>
         </li>
         <li>
           <Link to="cart">Cart ({cartCount})</Link>

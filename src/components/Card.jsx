@@ -42,8 +42,17 @@ function Card({ id, onClick }) {
           type="number"
           id="quantity"
           value={quantity}
-          onChange={(e) => setQuantity(Number(e.target.value))}
+          onChange={(e) => {
+            if (e.target.value < 100 && e.target.value > 0) {
+              setQuantity(Number(e.target.value));
+            } else if (e.target.value < 1) {
+              setQuantity(1);
+            } else if (e.target.value > 99) {
+              setQuantity(99);
+            }
+          }}
           min="1"
+          max="99"
         />
         <button onClick={handleAdd}>Add</button>
       </div>
