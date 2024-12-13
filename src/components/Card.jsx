@@ -30,6 +30,20 @@ function Card({ id, onClick }) {
     onClick(item);
   };
 
+  const handleInputChange = (event) => {
+    const value = event.target.value;
+    if (/^\d+$/.test(value)) {
+      const number = Number(value);
+      if (number < 100 && number > 0) {
+        setQuantity(number);
+      } else if (number > 99) {
+        setQuantity(99);
+      } else if (number < 1) {
+        setQuantity(1);
+      }
+    }
+  };
+
   return (
     <div className={styles.cardContainer}>
       <div className={styles.title}>{title}</div>
@@ -43,16 +57,11 @@ function Card({ id, onClick }) {
           id="quantity"
           value={quantity}
           onChange={(e) => {
-            if (e.target.value < 100 && e.target.value > 0) {
-              setQuantity(Number(e.target.value));
-            } else if (e.target.value < 1) {
-              setQuantity(1);
-            } else if (e.target.value > 99) {
-              setQuantity(99);
-            }
+            handleInputChange(e);
           }}
-          min="1"
-          max="99"
+          onClick={(e) => {
+            e.target.select();
+          }}
         />
         <button onClick={handleAdd}>Add</button>
       </div>
