@@ -8,9 +8,11 @@ function Card({ id, onClick }) {
   const [imgSrc, setImgSrc] = useState('');
   const [description, setDescription] = useState('');
   const [quantity, setQuantity] = useState(1);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const url = `https://fakestoreapi.com/products/${id}`;
+    setLoading(true);
     fetch(url)
       .then((response) => response.json())
       .then((response) => {
@@ -22,7 +24,8 @@ function Card({ id, onClick }) {
         setImgSrc(src);
         const description = response.description;
         setDescription(description);
-      });
+      })
+      .finally(() => setLoading(false));
   }, [id]);
 
   const handleAdd = () => {
@@ -46,25 +49,27 @@ function Card({ id, onClick }) {
 
   return (
     <div className={styles.cardContainer}>
-      <div className={styles.title}>{title}</div>
-      <div className={styles.price}>${price.toFixed(2)}</div>
-      <img src={imgSrc} alt="" />
-      <div>{description}</div>
-      <div className={styles.quantity}>
-        <label htmlFor="quantity">Quantity:</label>
-        <input
-          type="number"
-          id="quantity"
-          value={quantity}
-          onChange={(e) => {
-            handleInputChange(e);
-          }}
-          onClick={(e) => {
-            e.target.select();
-          }}
-        />
-        <button onClick={handleAdd}>Add</button>
-      </div>
+      {loading ? (
+        <div className={styles.spinner}></div>
+      ) : (
+        <>
+          <div className={styles.title}>{title}</div>
+          <div className={styles.price}>${price.toFixed(2)}</div>
+          <img src={imgSrc} alt="" />
+          <div>{description}</div>
+          <div className={styles.quantity}>
+            <label htmlFor="quantity">Quantity:</label>
+            <input
+              type="number"
+              id="quantity"
+              value={quantity}
+              onChange={handleInputChange}
+              onClick={(e) => e.target.select()}
+            />
+            <button onClick={handleAdd}>Add</button>
+          </div>
+        </>
+      )}
     </div>
   );
 }
