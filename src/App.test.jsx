@@ -1,21 +1,13 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import App from './App';
-import {
-  BrowserRouter,
-  RouterProvider,
-  createBrowserRouter,
-  MemoryRouter,
-  Route,
-  Routes,
-} from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 import Home from './components/Home';
 import Cart from './components/Cart';
 
 describe('App', () => {
   it('renders correct', async () => {
-    const user = userEvent.setup();
     render(
       <BrowserRouter>
         <Routes>
